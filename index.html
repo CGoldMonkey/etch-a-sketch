@@ -6,23 +6,67 @@
     <title>Etch-A-Sketch</title>
   </head>
   <body>
+    <button>New Grid</button>
     <div class="container">
 
       
     </div>
     <script>
       const container = document.querySelector('.container');
+      const btn = document.querySelector('button');
+
       for (let row = 0; row < 16; row++) {
         for (let column = 0; column < 16; column++) {
           let newDiv = document.createElement('div');
           container.appendChild(newDiv);
           newDiv.addEventListener('mouseenter', (e) => {
             e.target.classList.add('new-color');
-            console.log(e.target);
+   //         console.log(e.target);
           })
         }      
       }
 
+ //     const gridDivs = document.querySelectorAll('.container div');
+      btn.addEventListener('click', () => {
+  /*      gridDivs.forEach((div) => {
+          div.classList.remove('new-color');
+        }) */
+        let gridDivs = document.querySelectorAll('.container div');
+        gridDivs.forEach((div) => {
+          container.removeChild(div);
+        })
+        let newGridDimension = prompt("How many squares per side for the new grid?");
+        createGrid(newGridDimension);
+      })
+
+      function createGrid(numOfSideSquares) {
+        let gridCSS = `display:grid;
+            grid-template-rows:repeat(${numOfSideSquares}, 1fr);
+            grid-template-columns:repeat(${numOfSideSquares}, 1fr);`
+        
+        container.style.cssText = gridCSS;
+        for(let row = 0; row < numOfSideSquares; row++) {
+          for (let column = 0; column < numOfSideSquares; column++) {
+            let newDiv = document.createElement('div');
+            container.appendChild(newDiv);
+            newDiv.addEventListener('mouseenter', (e) => {
+              let colorCSS = newDivColor();
+              e.target.style.cssText = colorCSS;
+       //       e.target.classList.add('new-color');
+            })
+          }
+        }
+      }
+      
+      function newDivColor() {
+        let red = Math.floor(Math.random()*256);
+        let green = Math.floor(Math.random()*256);
+        let blue = Math.floor(Math.random()*256);
+        let colorCSS = `background-color:rgb(${red}, ${green}, ${blue})`;
+        return colorCSS;
+      }
+
+      
  /*     const gridDivs = document.querySelectorAll('.container div');
       gridDivs.forEach((div) => {
         div.addEventListener('mouseenter', (e) => {
