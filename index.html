@@ -16,10 +16,24 @@
         for (let column = 0; column < 16; column++) {
           let newDiv = document.createElement('div');
           container.appendChild(newDiv);
-          
+          newDiv.addEventListener('mouseenter', (e) => {
+            e.target.classList.add('new-color');
+            console.log(e.target);
+          })
         }      
       }
-     
+
+ /*     const gridDivs = document.querySelectorAll('.container div');
+      gridDivs.forEach((div) => {
+        div.addEventListener('mouseenter', (e) => {
+          //console.log(e);
+         // console.log(e.target);
+        })
+      })
+   /*   newDiv.addEventListener('mouseenter', () => {
+            this.classList.add('new-color');
+          })
+     */
     </script>
   </body>
 </html>
