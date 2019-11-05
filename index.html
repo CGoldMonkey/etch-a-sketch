@@ -49,8 +49,9 @@
           for (let column = 0; column < numOfSideSquares; column++) {
             let newDiv = document.createElement('div');
             container.appendChild(newDiv);
+            let colorCSS = randomDivColor();
             newDiv.addEventListener('mouseenter', (e) => {
-              let colorCSS = newDivColor();
+           //   let colorCSS = randomDivColor();
               e.target.style.cssText = colorCSS;
        //       e.target.classList.add('new-color');
             })
@@ -58,7 +59,7 @@
         }
       }
       
-      function newDivColor() {
+      function randomDivColor() {
         let red = Math.floor(Math.random()*256);
         let green = Math.floor(Math.random()*256);
         let blue = Math.floor(Math.random()*256);
