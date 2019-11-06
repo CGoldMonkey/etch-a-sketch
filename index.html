@@ -14,16 +14,56 @@
     <script>
       const container = document.querySelector('.container');
       const btn = document.querySelector('button');
+      
+      let darker = 100;
 
       for (let row = 0; row < 16; row++) {
         for (let column = 0; column < 16; column++) {
           let newDiv = document.createElement('div');
           container.appendChild(newDiv);
+
+          let notDark = `filter:brightness(100%);`
+
           newDiv.addEventListener('mouseenter', (e) => {
             e.target.classList.add('new-color');
+            
+
+            //if(e.target.get)
+ //           console.log(newDiv);
+            //console.log(e.target.getAttribute('style'));
+   //         console.log(e.target.style.filter);
+   //         console.log(e.target.getAttribute('style'));
+
+            e.target.style.cssText = notDark;
+            console.log(e.target.style.filter);
+            if(e.target.style.filter === 'brightness(100%)'){
+       //       darkerDiv(e.target);
+            }
+            console.log(e.target.style.filter);
+            e.target.filter = 'brightness(0%)';
+
+
+     //       console.log(newDiv);
+
+   //         console.log(e.target.getAttribute('style'));
+  //          console.log(e.target.style.filter);
+    //        console.log(e.target.getAttribute('style'));
+    //        console.log(darker);
+
+
+     //       darker-=10;
    //         console.log(e.target);
           })
         }      
+      }
+
+
+      function darkerDiv(div) {
+        let currentStyle = div.style.filter;
+        let currentBrightnessValue = currentStyle.match(/\d+/).toString(); 
+        let newStyle = currentStyle.replace(currentBrightnessValue, currentBrightnessValue-10);
+  //      console.log(newStyle);
+        div.style.filter = newStyle;
       }
 
  //     const gridDivs = document.querySelectorAll('.container div');
